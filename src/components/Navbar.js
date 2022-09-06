@@ -4,9 +4,8 @@ import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
 import InputBase from '@mui/material/InputBase'
-import SearchIcon from '@mui/icons-material/Search'
 import Button from '@mui/material/Button'
-import { Link } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -51,6 +50,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }))
 
 export default function Navbar() {
+  const location = useLocation()
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -61,7 +62,7 @@ export default function Navbar() {
           <Button
             variant="h5"
             component={Link}
-            to="/"
+            to={'/'}
             sx={{
               display: { flexGrow: 1, xs: 'none', sm: 'block' },
               textDecoration: 'none',
@@ -70,23 +71,16 @@ export default function Navbar() {
           >
             Home
           </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            component={Link}
-            to="/adduser"
-          >
-            Add user
-          </Button>
-          {/* <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search> */}
+          {location.pathname === '/' && (
+            <Button
+              variant="contained"
+              color="primary"
+              component={Link}
+              to="/adduser"
+            >
+              Add user
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </Box>

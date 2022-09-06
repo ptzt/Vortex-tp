@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Box from '@mui/material/Box'
-import TextField from '@mui/material/TextField'
+import { TextField } from '@mui/material'
 import Button from '@mui/material/Button'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -20,6 +20,8 @@ export const EditUser = () => {
   let { id } = useParams()
   const { user } = useSelector((state) => state.data)
   const { name, email, contact, address } = state
+  const [disabled, setDisabled] = useState(true)
+  const [show, setShow] = useState(true)
 
   useEffect(() => {
     dispatch(getSingleUser(id))
@@ -47,9 +49,17 @@ export const EditUser = () => {
     }
   }
 
+  const handleEdit = (e) => {
+    if (window.confirm('Are you sure you want to edit the user?')) {
+      e.preventDefault()
+      setDisabled(!disabled)
+      setShow(!show)
+    }
+  }
+
   return (
     <div>
-      <h2 style={{ textAlign: 'center' }}>Edit User</h2>
+      <h2 style={{ textAlign: 'center' }}>User view</h2>
       {error && <h3 style={{ color: 'red', textAlign: 'center' }}>{error}</h3>}
       <Box
         component="form"
@@ -59,7 +69,6 @@ export const EditUser = () => {
         noValidate
         autoComplete="off"
         style={{ textAlign: 'center' }}
-        onSubmit={handleSubmit}
       >
         <TextField
           id="outlined-basic"
@@ -69,6 +78,13 @@ export const EditUser = () => {
           type="text"
           name="name"
           onChange={handleInputChange}
+          disabled={disabled}
+          InputProps={{ disableUnderline: true }}
+          sx={{
+            '& .MuiInputBase-input.Mui-disabled': {
+              WebkitTextFillColor: 'black',
+            },
+          }}
         />
         <br />
         <TextField
@@ -79,6 +95,13 @@ export const EditUser = () => {
           type="email"
           name="email"
           onChange={handleInputChange}
+          disabled={disabled}
+          InputProps={{ disableUnderline: true }}
+          sx={{
+            '& .MuiInputBase-input.Mui-disabled': {
+              WebkitTextFillColor: 'black',
+            },
+          }}
         />
         <br />
         <TextField
@@ -89,6 +112,13 @@ export const EditUser = () => {
           type="number"
           name="contact"
           onChange={handleInputChange}
+          disabled={disabled}
+          InputProps={{ disableUnderline: true }}
+          sx={{
+            '& .MuiInputBase-input.Mui-disabled': {
+              WebkitTextFillColor: 'black',
+            },
+          }}
         />
         <br />
         <TextField
@@ -98,12 +128,35 @@ export const EditUser = () => {
           value={address || ''}
           type="text"
           name="address"
-          onChange={handleInputChange}
+          disabled={disabled}
+          InputProps={{ disableUnderline: true }}
+          sx={{
+            '& .MuiInputBase-input.Mui-disabled': {
+              WebkitTextFillColor: 'black',
+            },
+          }}
         />
         <br />
-        <Button variant="contained" color="primary" type="submit">
-          Edit
-        </Button>
+
+        {show ? (
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            onClick={handleEdit}
+          >
+            Edit
+          </Button>
+        ) : (
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            onClick={handleSubmit}
+          >
+            Submit
+          </Button>
+        )}
       </Box>
     </div>
   )

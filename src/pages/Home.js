@@ -12,6 +12,7 @@ import { deleteUser, loadUsers } from '../redux/actions'
 import Button from '@mui/material/Button'
 import ButtonGroup from '@mui/material/ButtonGroup'
 import { useNavigate } from 'react-router-dom'
+import TablePagination from '@mui/material/TablePagination'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -36,13 +37,24 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const Home = () => {
   let dispatch = useDispatch()
   const { users } = useSelector((state) => state.data)
+  const [page, setPage] = React.useState(0)
+  const [usersPerPage, setUsersPerPage] = React.useState(5)
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage)
+  }
+
+  const handleChangeUserPerPage = (event) => {
+    setUsersPerPage(+event.target.value)
+    setPage(0)
+  }
 
   useEffect(() => {
     dispatch(loadUsers())
   }, [])
 
   const handleDelete = (id) => {
-    if (window.confirm('¿Esta seguro de eliminar el usuario?')) {
+    if (window.confirm('Are you sure you want to delete this user?')) {
       dispatch(deleteUser(id))
     }
   }
@@ -63,8 +75,9 @@ const Home = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {users &&
-              users.map((user) => (
+            {users
+              .slice(page * usersPerPage, page * usersPerPage + usersPerPage)
+              .map((user) => (
                 <StyledTableRow key={user.id}>
                   <StyledTableCell component="th" scope="row">
                     {user.name}
@@ -88,8 +101,8 @@ const Home = () => {
                       >
                         Delete
                       </Button>
-                      <Button onClick={() => history(`/edituser/${user.id}`)}>
-                        Edit
+                      <Button onClick={() => history(`/viewuser/${user.id}`)}>
+                        View
                       </Button>
                     </ButtonGroup>
                   </StyledTableCell>
@@ -98,6 +111,15 @@ const Home = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[5, 10, 20]}
+        component="div"
+        count={users.length}
+        rowsPerPage={usersPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeUserPerPage}
+      />
     </div>
   )
 }
