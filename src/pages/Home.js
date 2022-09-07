@@ -1,50 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import Table from '@mui/material/Table'
-import TableBody from '@mui/material/TableBody'
-import TableCell, { tableCellClasses } from '@mui/material/TableCell'
-import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
-import TableRow from '@mui/material/TableRow'
-import Paper from '@mui/material/Paper'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteUser, loadUsers } from '../redux/actions'
-import Button from '@mui/material/Button'
 import ButtonGroup from '@mui/material/ButtonGroup'
 import { useNavigate } from 'react-router-dom'
-import TablePagination from '@mui/material/TablePagination'
-import InputBase from '@mui/material/InputBase'
-import { styled, alpha } from '@mui/material/styles'
-import SearchIcon from '@mui/icons-material/Search'
 import MaterialTable from '@material-table/core'
 import Checkbox from '@mui/material/Checkbox'
-import { Link } from 'react-router-dom'
-
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(1),
-    width: 'auto',
-  },
-}))
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}))
-
-//EXAMPLE
+import Button from '@mui/material/Button'
 
 const Home = () => {
   //EXAMPLE
