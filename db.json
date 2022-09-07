@@ -1,62 +1,6 @@
 {
   "user": [
     {
-      "name": "tomas SOY UN CAPO",
-      "email": "tom@example2.com",
-      "contact": "12312",
-      "address": "topma",
-      "id": 8
-    },
-    {
-      "name": "exampleeeee",
-      "email": "example@example12.com",
-      "contact": "123123",
-      "address": "example",
-      "id": 9
-    },
-    {
-      "name": "tomas nuevoo",
-      "email": "tom@example.com",
-      "contact": "12312",
-      "address": "tom",
-      "id": 10
-    },
-    {
-      "name": "tom example nuevo1",
-      "email": "tom@tom.com",
-      "contact": "123123",
-      "address": "tom",
-      "id": 11
-    },
-    {
-      "name": "tom example nuevo2",
-      "email": "tom@tom.com",
-      "contact": "123123",
-      "address": "tom",
-      "id": 12
-    },
-    {
-      "name": "tom example nuevo3",
-      "email": "tom@tom.com",
-      "contact": "123123",
-      "address": "tom",
-      "id": 13
-    },
-    {
-      "name": "tom example nuevo4",
-      "email": "tom@tom.com",
-      "contact": "123123",
-      "address": "tom",
-      "id": 14
-    },
-    {
-      "name": "tom example nuevo5",
-      "email": "tom@tom.com",
-      "contact": "123123",
-      "address": "tom",
-      "id": 15
-    },
-    {
       "name": "tom example nuevo6",
       "email": "tom@tom.com",
       "contact": "123123",
@@ -83,6 +27,34 @@
       "contact": "12312",
       "address": "tom",
       "id": 19
+    },
+    {
+      "name": "example 2020202020",
+      "email": "tom@example.com",
+      "contact": "12312",
+      "address": "tom",
+      "id": 20
+    },
+    {
+      "name": "Nuevo ejemplo con filtrosssssss",
+      "email": "tomasmillan@gmail.com",
+      "contact": "3814414499",
+      "address": "Tucuman",
+      "id": 21
+    },
+    {
+      "name": "Garay capo",
+      "email": "garay@example.com",
+      "contact": "1231231",
+      "address": "example",
+      "id": 22
+    },
+    {
+      "name": "Sergio capo",
+      "email": "sergio@example.com",
+      "contact": "12312",
+      "address": "example",
+      "id": 23
     }
   ]
 }

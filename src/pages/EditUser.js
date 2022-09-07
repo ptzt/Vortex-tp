@@ -40,12 +40,14 @@ export const EditUser = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (!name || !address || !contact || !email) {
-      setError('Please input all input field')
-    } else {
-      dispatch(updateUser(state, id))
-      setError('')
-      history('/')
+    if (window.confirm('Do you want to confirm the update?')) {
+      if (!name || !address || !contact || !email) {
+        setError('Please input all input field')
+      } else {
+        dispatch(updateUser(state, id))
+        setError('')
+        history('/')
+      }
     }
   }
 

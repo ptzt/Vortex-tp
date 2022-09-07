@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-import { styled } from '@mui/material/styles'
+import React, { useEffect, useState } from 'react'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell, { tableCellClasses } from '@mui/material/TableCell'
@@ -13,41 +12,74 @@ import Button from '@mui/material/Button'
 import ButtonGroup from '@mui/material/ButtonGroup'
 import { useNavigate } from 'react-router-dom'
 import TablePagination from '@mui/material/TablePagination'
+import InputBase from '@mui/material/InputBase'
+import { styled, alpha } from '@mui/material/styles'
+import SearchIcon from '@mui/icons-material/Search'
+import MaterialTable from '@material-table/core'
+import Checkbox from '@mui/material/Checkbox'
+import { Link } from 'react-router-dom'
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+const Search = styled('div')(({ theme }) => ({
+  position: 'relative',
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  '&:hover': {
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
+  marginLeft: 0,
+  width: '100%',
+  [theme.breakpoints.up('sm')]: {
+    marginLeft: theme.spacing(1),
+    width: 'auto',
   },
 }))
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: '100%',
+  position: 'absolute',
+  pointerEvents: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 }))
+
+//EXAMPLE
 
 const Home = () => {
-  let dispatch = useDispatch()
+  //EXAMPLE
   const { users } = useSelector((state) => state.data)
-  const [page, setPage] = React.useState(0)
-  const [usersPerPage, setUsersPerPage] = React.useState(5)
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage)
+  const [filter, setFilter] = useState(false)
+  const handleChange = () => {
+    setFilter(!filter)
   }
 
-  const handleChangeUserPerPage = (event) => {
-    setUsersPerPage(+event.target.value)
-    setPage(0)
-  }
+  const columns = [
+    { title: 'Name', field: 'name' },
+    { title: 'Email', field: 'email' },
+    { title: 'Contact', field: 'contact' },
+    { title: 'Address', field: 'address' },
+    {
+      title: 'Action',
+      render: (user) => (
+        <ButtonGroup
+          variant="contained"
+          aria-label="outlined primary button group"
+        >
+          <Button
+            color="error"
+            style={{ marginRight: '2px' }}
+            onClick={() => handleDelete(user.id)}
+          >
+            Delete
+          </Button>
+          <Button onClick={() => history(`/viewuser/${user.id}`)}>View</Button>
+        </ButtonGroup>
+      ),
+    },
+  ]
+
+  let dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(loadUsers())
@@ -63,62 +95,29 @@ const Home = () => {
 
   return (
     <div>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
-          <TableHead>
-            <TableRow>
-              <StyledTableCell>Name</StyledTableCell>
-              <StyledTableCell align="center">Email</StyledTableCell>
-              <StyledTableCell align="center">Contact</StyledTableCell>
-              <StyledTableCell align="center">Address</StyledTableCell>
-              <StyledTableCell align="center">Action</StyledTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {users
-              .slice(page * usersPerPage, page * usersPerPage + usersPerPage)
-              .map((user) => (
-                <StyledTableRow key={user.id}>
-                  <StyledTableCell component="th" scope="row">
-                    {user.name}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">{user.email}</StyledTableCell>
-                  <StyledTableCell align="center">
-                    {user.contact}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    {user.address}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    <ButtonGroup
-                      variant="contained"
-                      aria-label="outlined primary button group"
-                    >
-                      <Button
-                        color="error"
-                        style={{ marginRight: '2px' }}
-                        onClick={() => handleDelete(user.id)}
-                      >
-                        Delete
-                      </Button>
-                      <Button onClick={() => history(`/viewuser/${user.id}`)}>
-                        View
-                      </Button>
-                    </ButtonGroup>
-                  </StyledTableCell>
-                </StyledTableRow>
-              ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[5, 10, 20]}
-        component="div"
-        count={users.length}
-        rowsPerPage={usersPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeUserPerPage}
+      <MaterialTable
+        title="Employee Data"
+        data={users}
+        columns={columns}
+        options={{
+          filtering: filter,
+          search: true,
+          pageSize: 10,
+          rowsPerPageOptions: [5, 10, 200],
+        }}
+        actions={[
+          {
+            icon: () => (
+              <Checkbox
+                checked={filter}
+                onChange={handleChange}
+                inputProps={{ 'aria-label': 'primary checkbox' }}
+              />
+            ),
+            tooltip: 'Hide/Show Filter option',
+            isFreeAction: true,
+          },
+        ]}
       />
     </div>
   )
