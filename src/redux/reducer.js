@@ -1,4 +1,10 @@
-import * as types from './actionType'
+import {
+  GET_USERS,
+  DELETE_USERS,
+  ADD_USER,
+  GET_SINGLE_USER,
+  UPDATE_USER,
+} from './actionType'
 
 const initialState = {
   users: [],
@@ -8,29 +14,29 @@ const initialState = {
 
 const usersReducers = (state = initialState, action) => {
   switch (action.type) {
-    case types.GET_USERS:
+    case GET_USERS:
       return {
         ...state,
         users: action.payload,
         loading: false,
       }
-    case types.DELETE_USERS:
+    case DELETE_USERS:
       return {
         ...state,
         loading: false,
       }
-    case types.ADD_USER:
+    case ADD_USER:
       return {
         ...state,
         loading: false,
       }
-    case types.GET_SINGLE_USER:
+    case GET_SINGLE_USER:
       return {
         ...state,
         user: action.payload,
         loading: false,
       }
-    case types.UPDATE_USER:
+    case UPDATE_USER:
       return {
         ...state,
         loading: false,

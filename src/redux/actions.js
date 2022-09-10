@@ -1,26 +1,32 @@
-import * as types from './actionType'
+import {
+  GET_USERS,
+  DELETE_USERS,
+  ADD_USER,
+  GET_SINGLE_USER,
+  UPDATE_USER,
+} from './actionType'
 import axios from 'axios'
 
 const getUsers = (users) => ({
-  type: types.GET_USERS,
+  type: GET_USERS,
   payload: users,
 })
 
 const userDeleted = () => ({
-  type: types.DELETE_USERS,
+  type: DELETE_USERS,
 })
 
 const userAdd = () => ({
-  type: types.ADD_USER,
+  type: ADD_USER,
 })
 
 const getUser = (user) => ({
-  type: types.GET_SINGLE_USER,
+  type: GET_SINGLE_USER,
   payload: user,
 })
 
 const userUpdate = () => ({
-  type: types.UPDATE_USER,
+  type: UPDATE_USER,
 })
 
 const URL = 'http://localhost:5000/user'

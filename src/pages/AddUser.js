@@ -1,4 +1,4 @@
-import React, { useState, useForm } from 'react'
+import React, { useState } from 'react'
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
@@ -8,9 +8,12 @@ import { addUser } from '../redux/actions'
 
 export const AddUser = () => {
   const [state, setState] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     contact: '',
+    hireDate: '',
+    salary: '',
     address: '',
   })
 
@@ -18,7 +21,16 @@ export const AddUser = () => {
   let dispatch = useDispatch()
   let history = useNavigate()
 
-  const { name, email, contact, address } = state
+  const {
+    name,
+    firstName,
+    lastName,
+    email,
+    contact,
+    hireDate,
+    salary,
+    address,
+  } = state
 
   const handleInputChange = (e) => {
     let { name, value } = e.target
@@ -27,9 +39,10 @@ export const AddUser = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (!name || !address || !contact || !email) {
+    if (!firstName || !lastName || !hireDate || !salary || !contact || !email) {
       setError('Please input all input field')
     } else {
+      window.alert('Empleado agregado')
       dispatch(addUser(state))
       history('/')
       setError('')
@@ -52,11 +65,21 @@ export const AddUser = () => {
       >
         <TextField
           id="outlined-basic"
-          label="Name"
+          label="First name"
           variant="outlined"
-          value={name}
+          value={firstName}
           type="text"
-          name="name"
+          name="firstName"
+          onChange={handleInputChange}
+        />
+        <br />
+        <TextField
+          id="outlined-basic"
+          label="Last name"
+          variant="outlined"
+          value={lastName}
+          type="text"
+          name="lastName"
           onChange={handleInputChange}
         />
         <br />
@@ -82,11 +105,30 @@ export const AddUser = () => {
         <br />
         <TextField
           id="outlined-basic"
+          variant="outlined"
+          value={hireDate}
+          type="date"
+          name="hireDate"
+          onChange={handleInputChange}
+        />
+        <br />
+        <TextField
+          id="outlined-basic"
           label="Address"
           variant="outlined"
           value={address}
-          type="text"
+          type="address"
           name="address"
+          onChange={handleInputChange}
+        />
+        <br />
+        <TextField
+          id="outlined-basic"
+          label="Salary"
+          variant="outlined"
+          value={salary}
+          type="number"
+          name="salary"
           onChange={handleInputChange}
         />
         <br />

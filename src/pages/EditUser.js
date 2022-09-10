@@ -19,7 +19,7 @@ export const EditUser = () => {
   let history = useNavigate()
   let { id } = useParams()
   const { user } = useSelector((state) => state.data)
-  const { name, email, contact, address } = state
+  const { name, email, contact, address, salary } = state
   const [disabled, setDisabled] = useState(true)
   const [show, setShow] = useState(true)
 
@@ -41,7 +41,7 @@ export const EditUser = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (window.confirm('Do you want to confirm the update?')) {
-      if (!name || !address || !contact || !email) {
+      if (!name || !address || !contact || !email || !salary) {
         setError('Please input all input field')
       } else {
         dispatch(updateUser(state, id))
@@ -51,12 +51,50 @@ export const EditUser = () => {
     }
   }
 
+  const handleCancelEdit = (e) => {
+    if (window.confirm('Are you sure to cancel the edit? ')) {
+    } else {
+      e.preventDefault()
+    }
+  }
+
   const handleEdit = (e) => {
-    if (window.confirm('Are you sure you want to edit the user?')) {
+    if (window.confirm('Are you sure?')) {
       e.preventDefault()
       setDisabled(!disabled)
       setShow(!show)
     }
+  }
+
+  function twoButtons() {
+    return (
+      <Box
+        component="form"
+        sx={{
+          '& > :not(style)': { m: 1, width: '45ch' },
+        }}
+        noValidate
+        autoComplete="off"
+        style={{ margin: '0 auto', display: 'flex' }}
+      >
+        <Button
+          variant="contained"
+          color="primary"
+          type="submit"
+          onClick={handleSubmit}
+        >
+          Submit
+        </Button>
+        <Button
+          variant="contained"
+          color="secondary"
+          type="submit"
+          onClick={handleCancelEdit}
+        >
+          Cancel
+        </Button>
+      </Box>
+    )
   }
 
   return (
@@ -130,6 +168,24 @@ export const EditUser = () => {
           value={address || ''}
           type="text"
           name="address"
+          onChange={handleInputChange}
+          disabled={disabled}
+          InputProps={{ disableUnderline: true }}
+          sx={{
+            '& .MuiInputBase-input.Mui-disabled': {
+              WebkitTextFillColor: 'black',
+            },
+          }}
+        />
+        <br />
+        <TextField
+          id="outlined-basic"
+          label="Salary"
+          variant="outlined"
+          value={salary || ''}
+          type="text"
+          name="salary"
+          onChange={handleInputChange}
           disabled={disabled}
           InputProps={{ disableUnderline: true }}
           sx={{
@@ -150,14 +206,7 @@ export const EditUser = () => {
             Edit
           </Button>
         ) : (
-          <Button
-            variant="contained"
-            color="primary"
-            type="submit"
-            onClick={handleSubmit}
-          >
-            Submit
-          </Button>
+          twoButtons()
         )}
       </Box>
     </div>

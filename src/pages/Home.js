@@ -8,7 +8,6 @@ import Checkbox from '@mui/material/Checkbox'
 import Button from '@mui/material/Button'
 
 const Home = () => {
-  //EXAMPLE
   const { users } = useSelector((state) => state.data)
   const [filter, setFilter] = useState(false)
   const handleChange = () => {
@@ -16,9 +15,13 @@ const Home = () => {
   }
 
   const columns = [
-    { title: 'Name', field: 'name' },
+    { title: 'Id', field: 'id' },
+    { title: 'First name', field: 'firstName' },
+    { title: 'Last name', field: 'lastName' },
     { title: 'Email', field: 'email' },
     { title: 'Contact', field: 'contact' },
+    { title: 'Hire Date', field: 'hireDate' },
+    { title: 'Salary', field: 'salary' },
     { title: 'Address', field: 'address' },
     {
       title: 'Action',
@@ -64,7 +67,9 @@ const Home = () => {
           filtering: filter,
           search: true,
           pageSize: 10,
-          rowsPerPageOptions: [5, 10, 200],
+          rowsPerPageOptions: [5, 10, 20],
+          sorting: true,
+          thirdSortClick: false,
         }}
         actions={[
           {

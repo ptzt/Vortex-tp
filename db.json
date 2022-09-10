@@ -1,74 +1,44 @@
 {
   "user": [
     {
-      "name": "tom example nuevo6",
-      "email": "tom@tom.com",
+      "firstName": "Tomas",
+      "lastName": "Millan",
+      "email": "tomas@gmail.com",
       "contact": "123123",
-      "address": "tom",
+      "hireDate": "2022-10-01",
+      "salary": "3000",
+      "address": "Tucuman",
       "id": 16
     },
     {
-      "name": "tom example nuevo7",
-      "email": "tom@tom.com",
-      "contact": "123123",
-      "address": "tom",
+      "firstName": "Juan",
+      "lastName": "Rodriguez",
+      "email": "Juan@gmail.com",
+      "contact": "3811231234",
+      "hireDate": "2022-09-23",
+      "salary": "30000",
+      "address": "Tucuman",
       "id": 17
     },
     {
-      "name": "tom example nuevo8",
-      "email": "tom@tom.com",
-      "contact": "123123",
-      "address": "tom",
+      "firstName": "Andrea",
+      "lastName": "Millan",
+      "email": "Andrea@gmail.com",
+      "contact": "3811231234",
+      "hireDate": "2022-09-01",
+      "salary": "50000",
+      "address": "Tucuman",
       "id": 18
     },
     {
-      "name": "tomas9",
-      "email": "tomas@xample.com",
-      "contact": "12312",
-      "address": "tom",
+      "firstName": "Matias",
+      "lastName": "Millan",
+      "email": "Matias@gmail.com",
+      "contact": "3811231245",
+      "hireDate": "2022-08-11",
+      "salary": "25000",
+      "address": "Alderetes",
       "id": 19
-    },
-    {
-      "name": "example 2020202020",
-      "email": "tom@example.com",
-      "contact": "12312",
-      "address": "tom",
-      "id": 20
-    },
-    {
-      "name": "Nuevo ejemplo con filtrosssssss",
-      "email": "tomasmillan@gmail.com",
-      "contact": "3814414499",
-      "address": "Tucuman",
-      "id": 21
-    },
-    {
-      "name": "Garay capo",
-      "email": "garay@example.com",
-      "contact": "1231231",
-      "address": "example",
-      "id": 22
-    },
-    {
-      "name": "Sergio capo",
-      "email": "sergio@example.com",
-      "contact": "12312",
-      "address": "example",
-      "id": 23
-    },
-    {
-      "name": "s",
-      "email": "s",
-      "contact": "1",
-      "address": "s",
-      "id": 24
-    },
-    {
-      "name": "sdasda12312",
-      "email": "tom@example.com",
-      "contact": "123",
-      "address": "tom",
-      "id": 25
     }
   ]
 }
