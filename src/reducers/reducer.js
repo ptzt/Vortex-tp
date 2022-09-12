@@ -4,7 +4,7 @@ import {
   ADD_USER,
   GET_SINGLE_USER,
   UPDATE_USER,
-} from './actionType'
+} from '../common/constants'
 
 const initialState = {
   users: [],

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteUser, loadUsers } from '../redux/actions'
+import { deleteUser, loadUsers } from '../actions/actions'
 import ButtonGroup from '@mui/material/ButtonGroup'
 import { useNavigate } from 'react-router-dom'
 import MaterialTable from '@material-table/core'
@@ -33,7 +33,7 @@ const Home = () => {
           <Button
             color="error"
             style={{ marginRight: '2px' }}
-            onClick={() => handleDelete(user.id)}
+            onClick={() => handleDelete(user.id, user.firstName, user.lastName)}
           >
             Delete
           </Button>
@@ -49,8 +49,12 @@ const Home = () => {
     dispatch(loadUsers())
   }, [])
 
-  const handleDelete = (id) => {
-    if (window.confirm('Are you sure you want to delete this user?')) {
+  const handleDelete = (id, firstName, lastName) => {
+    if (
+      window.confirm(
+        `Are you sure you want to delete ${firstName} ${lastName}?`
+      )
+    ) {
       dispatch(deleteUser(id))
     }
   }
@@ -60,7 +64,7 @@ const Home = () => {
   return (
     <div>
       <MaterialTable
-        title="Employee Data"
+        title="Employees Data"
         data={users}
         columns={columns}
         options={{

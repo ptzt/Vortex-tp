@@ -4,7 +4,7 @@ import { TextField } from '@mui/material'
 import Button from '@mui/material/Button'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import { getSingleUser, updateUser } from '../redux/actions'
+import { getSingleUser, updateUser } from '../actions/actions'
 
 export const EditUser = () => {
   const [state, setState] = useState({
@@ -19,7 +19,8 @@ export const EditUser = () => {
   let history = useNavigate()
   let { id } = useParams()
   const { user } = useSelector((state) => state.data)
-  const { name, email, contact, address, salary } = state
+  const { firstName, lastName, email, contact, address, salary, hireDate } =
+    state
   const [disabled, setDisabled] = useState(true)
   const [show, setShow] = useState(true)
 
@@ -41,7 +42,15 @@ export const EditUser = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (window.confirm('Do you want to confirm the update?')) {
-      if (!name || !address || !contact || !email || !salary) {
+      if (
+        !firstName ||
+        !lastName ||
+        !address ||
+        !contact ||
+        !email ||
+        !salary ||
+        !hireDate
+      ) {
         setError('Please input all input field')
       } else {
         dispatch(updateUser(state, id))
@@ -112,11 +121,28 @@ export const EditUser = () => {
       >
         <TextField
           id="outlined-basic"
-          label="Name"
+          label="First name"
           variant="outlined"
-          value={name || ''}
+          value={firstName || ''}
           type="text"
-          name="name"
+          name="firstName"
+          onChange={handleInputChange}
+          disabled={disabled}
+          InputProps={{ disableUnderline: true }}
+          sx={{
+            '& .MuiInputBase-input.Mui-disabled': {
+              WebkitTextFillColor: 'black',
+            },
+          }}
+        />
+        <br />
+        <TextField
+          id="outlined-basic"
+          label="Last name"
+          variant="outlined"
+          value={lastName || ''}
+          type="text"
+          name="lastName"
           onChange={handleInputChange}
           disabled={disabled}
           InputProps={{ disableUnderline: true }}
@@ -151,6 +177,22 @@ export const EditUser = () => {
           value={contact || ''}
           type="number"
           name="contact"
+          onChange={handleInputChange}
+          disabled={disabled}
+          InputProps={{ disableUnderline: true }}
+          sx={{
+            '& .MuiInputBase-input.Mui-disabled': {
+              WebkitTextFillColor: 'black',
+            },
+          }}
+        />
+        <br />
+        <TextField
+          id="outlined-basic"
+          variant="outlined"
+          value={hireDate || ''}
+          type="date"
+          name="hireDate"
           onChange={handleInputChange}
           disabled={disabled}
           InputProps={{ disableUnderline: true }}

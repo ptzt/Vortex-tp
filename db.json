@@ -1,21 +1,11 @@
 {
   "user": [
     {
-      "firstName": "Tomas",
-      "lastName": "Millan",
-      "email": "tomas@gmail.com",
-      "contact": "123123",
-      "hireDate": "2022-10-01",
-      "salary": "3000",
-      "address": "Tucuman",
-      "id": 16
-    },
-    {
       "firstName": "Juan",
       "lastName": "Rodriguez",
       "email": "Juan@gmail.com",
       "contact": "3811231234",
-      "hireDate": "2022-09-23",
+      "hireDate": "2022-07-14",
       "salary": "30000",
       "address": "Tucuman",
       "id": 17
@@ -39,6 +29,16 @@
       "salary": "25000",
       "address": "Alderetes",
       "id": 19
+    },
+    {
+      "firstName": "Example 1",
+      "lastName": "example 1",
+      "email": "example@gmail.com",
+      "contact": "123123",
+      "hireDate": "2022-09-01",
+      "salary": "3020",
+      "address": "Alderetes",
+      "id": 21
     }
   ]
 }

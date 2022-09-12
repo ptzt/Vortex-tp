@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { addUser } from '../redux/actions'
+import { addUser } from '../actions/actions'
 
 export const AddUser = () => {
   const [state, setState] = useState({
@@ -21,16 +21,8 @@ export const AddUser = () => {
   let dispatch = useDispatch()
   let history = useNavigate()
 
-  const {
-    name,
-    firstName,
-    lastName,
-    email,
-    contact,
-    hireDate,
-    salary,
-    address,
-  } = state
+  const { firstName, lastName, email, contact, hireDate, salary, address } =
+    state
 
   const handleInputChange = (e) => {
     let { name, value } = e.target
